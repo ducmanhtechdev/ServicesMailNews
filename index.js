@@ -27,11 +27,27 @@ const parser = new Parser({
 });
 
 const FEEDS = [
-    { category: '⚖️ PHÁP LUẬT', url: 'https://vnexpress.net/rss/phap-luat.rss' },
-    { category: '⚽ BÓNG ĐÁ', url: 'https://vnexpress.net/rss/the-thao/bong-da.rss' },
-    { category: '📱 CÔNG NGHỆ', url: 'https://vnexpress.net/rss/so-hoa.rss' },
-    { category: '📰 THỜI SỰ', url: 'https://vnexpress.net/rss/thoi-su.rss' }
+    // Dùng Google News để lọc tin từ VnExpress (site:vnexpress.net)
+    {
+        category: '⚖️ PHÁP LUẬT',
+        url: 'https://news.google.com/rss/search?q=site:vnexpress.net+ph%C3%A1p+lu%E1%BA%ADt&hl=vi&gl=VN&ceid=VN:vi'
+    },
+    {
+        category: '⚽ BÓNG ĐÁ',
+        url: 'https://news.google.com/rss/search?q=site:vnexpress.net+b%C3%B3ng+%C4%91%C3%A1&hl=vi&gl=VN&ceid=VN:vi'
+    },
+    {
+        category: '📱 CÔNG NGHỆ',
+        url: 'https://news.google.com/rss/search?q=site:vnexpress.net+c%C3%B4ng+ngh%E1%BB%87&hl=vi&gl=VN&ceid=VN:vi'
+    },
+    {
+        category: '📰 THỜI SỰ & CHÍNH TRỊ',
+        url: 'https://news.google.com/rss/search?q=site:vnexpress.net+th%E1%BB%9Di+s%E1%BB%B1+ch%C3%ADnh+tr%E1%BB%8B&hl=vi&gl=VN&ceid=VN:vi'
+    }
 ];
+
+// LƯU Ý: Phần headers fake User-Agent hôm qua thêm vào có thể giữ lại hoặc bỏ đi đều được,
+// nhưng với Google RSS thì thường không cần quá khắt khe.
 
 // Helper: Fetch một feed đơn lẻ với try-catch riêng biệt
 async function fetchSingleFeed(feed) {
